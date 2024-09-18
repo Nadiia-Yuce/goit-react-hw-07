@@ -14,7 +14,6 @@ export default function ContactList() {
 
   //   всередині ліста мепаємо початковий масив контактів, малюємо лішку з ключем
   // в Contact пропсом кидаємо ітерований обʼєкт масиву
-  // onDelete просто передається далі в Contact
   return (
     <div>
       {contacts.length === 0 ? (

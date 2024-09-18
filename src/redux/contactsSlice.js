@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchContacts } from "./contactsOps";
 
 export const selectContacts = state => state.contacts.items;
+export const selectLoading = state => state.contacts.loading;
+export const selectError = state => state.contacts.error;
 
 const initialState = {
-  items: [
-    { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-    { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-    { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-    { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-  ],
+  items: [],
+  loading: false,
+  error: false,
 };
 
 //? Детальніше по слайсу див. коментарі в filtersSlice.js
@@ -16,14 +16,31 @@ const initialState = {
 const slice = createSlice({
   name: "contacts",
   initialState,
-  reducers: {
-    addContact: (state, action) => {
-      state.items.push(action.payload);
-    },
-    deleteContact: (state, action) => {
-      state.items = state.items.filter(task => task.id !== action.payload);
-    },
+
+  //extraReducers використовуємо для обробки інших, НЕ ВЛАСНИХ екшенів
+  extraReducers: builder => {
+    builder
+      .addCase(fetchContacts.pending, state => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(fetchContacts.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchContacts.rejected, state => {
+        state.loading = false;
+        state.error = true;
+      });
   },
+  // reducers: {
+  //   addContact: (state, action) => {
+  //     state.items.push(action.payload);
+  //   },
+  //   deleteContact: (state, action) => {
+  //     state.items = state.items.filter(task => task.id !== action.payload);
+  //   },
+  // },
 });
 
 export const { addContact, deleteContact } = slice.actions;

@@ -9,11 +9,12 @@ const slice = createSlice({
     //   case-reducer
     changeFilter: (state, action) => {
       //Ми можемо мутувати обʼєкти чи масиви напряму, бо у redux є бібліотека immer, яка робить копію поточного стану ї дає можливість "мутувати" його напряму
-      state.name = action.payload;
+      //Можемо скоротити цей код:
       //   return {
       //     ...state,
       //     name: action.payload,
       //   };
+      state.name = action.payload;
     },
   },
 });
