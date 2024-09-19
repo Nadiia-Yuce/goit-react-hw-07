@@ -15,3 +15,28 @@ export const fetchContacts = createAsyncThunk(
     }
   }
 );
+
+export const addContact = createAsyncThunk(
+  "contacts/addContact",
+  async (newContact, thunkAPI) => {
+    try {
+      const response = await axios.post("/contacts", newContact);
+      return response.data;
+    } catch {
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
+
+export const deleteContact = createAsyncThunk(
+  "contacts/deleteContact",
+  async (contactId, thunkAPI) => {
+    try {
+      const response = await axios.delete(`/contacts/${contactId}`);
+      //Повертає видалений обʼєкт, з якого ми для редюсера беремо значення id
+      return response.data;
+    } catch {
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);

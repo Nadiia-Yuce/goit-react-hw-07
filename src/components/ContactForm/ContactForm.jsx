@@ -1,31 +1,24 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { addContact } from "../../redux/contactsSlice";
 import { useDispatch } from "react-redux";
-import { nanoid } from "nanoid";
 import css from "./ContactForm.module.css";
 import * as Yup from "yup";
+import { addContact } from "../../redux/contactsOps";
 
 export default function ContactForm() {
   const dispatch = useDispatch();
 
   //початкові значення для обовʼязкового пропсу initialValues в Formik. Беруться з атрибуту name в інпутах
-  const initialValues = { contactName: "", number: "" };
+  const initialValues = { name: "", number: "" };
 
   const handleSubmit = (values, actions) => {
-    dispatch(
-      addContact({
-        id: nanoid(5),
-        name: values.contactName,
-        number: values.number,
-      })
-    );
+    dispatch(addContact(values));
     actions.resetForm();
   };
 
   //бібліотека для валідації "yup"; схема валідації полів; передається пропсом в Formik
   //помилки валідації візуалізуємо через компонент ErrorMessage, який додаємо до кожного філда
   const contactSchema = Yup.object().shape({
-    contactName: Yup.string()
+    name: Yup.string()
       .min(3, "Too short! Minimum 3 letters.")
       .max(50, "Too long! Maximum 50 letters.")
       .required("Required!"),
@@ -46,19 +39,11 @@ export default function ContactForm() {
       {({ isValid, dirty }) => (
         <Form className={`${css.form} animate__animated animate__fadeInDown`}>
           <div className={css.formGroup}>
-            <label htmlFor="contactName" className={css.formLabel}>
+            <label htmlFor="name" className={css.formLabel}>
               Name
             </label>
-            <Field
-              name="contactName"
-              id="contactName"
-              className={css.formInput}
-            />
-            <ErrorMessage
-              name="contactName"
-              component="span"
-              className={css.error}
-            />
+            <Field name="name" id="name" className={css.formInput} />
+            <ErrorMessage name="name" component="span" className={css.error} />
           </div>
 
           <div className={css.formGroup}>

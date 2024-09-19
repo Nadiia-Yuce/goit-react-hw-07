@@ -1,11 +1,12 @@
-import { deleteContact } from "../../redux/contactsSlice";
 import { FaPhone, FaUser } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import css from "./Contact.module.css";
 import clsx from "clsx";
+import { deleteContact } from "../../redux/contactsOps";
 
 export default function Contact({ contact: { name, number, id } }) {
+  //локальний стан для коректного відображення анімації
   const [isRemoving, setIsRemoving] = useState(false);
   const dispatch = useDispatch();
 
@@ -32,13 +33,11 @@ export default function Contact({ contact: { name, number, id } }) {
       </div>
       <div className={css.wrap}>
         <FaPhone size={16} color="rgb(97, 76, 150)" />
-        {/* <p className={css.text}>{number}</p> */}
+        {/* Клікабельний номер */}
         <a className={`${css.text} ${css.tel}`} href={`tel: ${number}`}>
           {number}
         </a>
       </div>
-      {/* при події onClick викликається коллбек onDelete, якому передається поточне значеня id, по якому має видалятися обʼєкт */}
-      {/* атрибут id ф-ї onDelete піднімається до початкової ф-ї removeContact в App  */}
       <button type="button" className={css.delete} onClick={handleRemove}>
         Delete
       </button>
