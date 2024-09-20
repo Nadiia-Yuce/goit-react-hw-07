@@ -33,8 +33,8 @@
 export const changeFilter = createAction("contacts/changeFilter");
 ```
 
-Пояснення: Функція createAction приймає рядок - type екшену При виклику екшену
-як фунції передане їй значення потрапляє у payload Нпр. changeFilter(query) це
+Пояснення: Функція createAction приймає рядок - type екшену. При виклику екшену
+як фунції передане їй значення потрапляє у payload. Нпр.: changeFilter(query) це
 екшен
 
 ```js
@@ -44,8 +44,8 @@ const changeFilter = {
 };
 ```
 
-- розширено: По type екшену редюсер розрізняє який саме екшен відбувся payload -
-  це значення, яке передається при виклику (діспатчі) екшену
+- розширено: По type екшену редюсер розрізняє який саме екшен відбувся. A
+  payload - це значення, яке передається при виклику (діспатчі) екшену
 
 ```js
 export const changeFilter = query => {
@@ -58,7 +58,7 @@ export const changeFilter = query => {
 
 ## Як працює кореневий редюсер (розширено)
 
-Тут contacts та filters - частини стану стора (слайси) А addContact,
+Тут contacts та filters - частини стану стора (слайси). А addContact,
 deleteContact та changeFilter - екшени
 
 ```js
