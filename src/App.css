@@ -3,3 +3,10 @@
   justify-content: center;
   margin: 0 0 30px 10px;
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}

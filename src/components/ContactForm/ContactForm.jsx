@@ -1,8 +1,8 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useDispatch } from "react-redux";
-import css from "./ContactForm.module.css";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contactsOps";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import css from "./ContactForm.module.css";
 
 export default function ContactForm() {
   const dispatch = useDispatch();

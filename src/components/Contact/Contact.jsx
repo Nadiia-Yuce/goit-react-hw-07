@@ -1,9 +1,9 @@
-import { FaPhone, FaUser } from "react-icons/fa";
-import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteContact } from "../../redux/contactsOps";
+import { FaPhone, FaUser } from "react-icons/fa";
 import css from "./Contact.module.css";
 import clsx from "clsx";
-import { deleteContact } from "../../redux/contactsOps";
 
 export default function Contact({ contact: { name, number, id } }) {
   //локальний стан для коректного відображення анімації

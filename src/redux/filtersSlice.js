@@ -8,12 +8,6 @@ const slice = createSlice({
   reducers: {
     //   case-reducer
     changeFilter: (state, action) => {
-      //Ми можемо мутувати обʼєкти чи масиви напряму, бо у redux є бібліотека immer, яка робить копію поточного стану ї дає можливість "мутувати" його напряму
-      //Можемо скоротити цей код:
-      //   return {
-      //     ...state,
-      //     name: action.payload,
-      //   };
       state.name = action.payload;
     },
   },
@@ -24,20 +18,3 @@ export const { changeFilter } = slice.actions;
 
 //експорт головного редюсера
 export default slice.reducer;
-
-//! Як працює слайс - екшени + редюсер
-// export const changeFilter = createAction("contacts/changeFilter");
-
-// export default function filtersReducer(state = { name: "" }, action) {
-//   switch (action.type) {
-//     case "filters/changeFilter": {
-//       return {
-//         ...state,
-//         name: action.payload,
-//       };
-//     }
-
-//     default:
-//       return state;
-//   }
-// }
