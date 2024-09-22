@@ -111,3 +111,6 @@ export default slice.reducer;
 
 //експорт головного редюсера, який буде використовуватися у файлі store.js
 // export default slice.reducer;
+
+//експорт фабрик екшенів
+// export const { changeFilter } = slice.actions;
